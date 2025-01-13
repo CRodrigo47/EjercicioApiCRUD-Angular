@@ -20,7 +20,17 @@ export class JugueteServiceService {
     return this.http.get<Juguete>(this.baseURL + "juguete/" + id)
   }
 
-  
+  addJuguete(juguete: Juguete):Observable<ApiResponseStatus>{
+    return this.http.post<ApiResponseStatus>(this.baseURL + "juguetes", juguete)
+  }
+
+  updateJuguete(juguete: Juguete): Observable<ApiResponseStatus>{
+    return this.http.put<ApiResponseStatus>(this.baseURL + "update/" + juguete._id, juguete)
+  }
+
+  deleteJuguete(id: string): Observable<ApiResponseStatus>{
+    return this.http.delete<ApiResponseStatus>(this.baseURL + "delete/" + id)
+  }
 
 }
 
