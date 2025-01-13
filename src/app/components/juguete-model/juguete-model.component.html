@@ -1,10 +1,10 @@
 @defer (when this.cargandoFormulario) {
-<div class="modal-dialog">
+<div class="modal-dialog text-dark">
   <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">
+    <div class="modal-header justify-content-center py-4">
+      <h1 class="modal-title text-white">
         {{ id ? nombre.value : "Nuevo Juguete" }}
-      </h5>
+      </h1>
     </div>
     <div class="modal-body">
       <form [formGroup]="formJuguete" (ngSubmit)="onSubmit()">
@@ -61,14 +61,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        (click)="activeModal.dismiss()"
-      >
-        Cerrar
-      </button>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      <button type="submit" class="btn btn-danger" (click)="onSubmit()">
         Guardar cambios
       </button>
     </div>
@@ -76,9 +69,9 @@
 </div>
 
 }@placeholder {
-<div class="d-flex justify-content-center">
-  <div class="spinner-border text-danger" role="status">
-    <span class="visually-hidden">Loading...</span>
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
+    <div class="spinner-border text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-</div>
 }
