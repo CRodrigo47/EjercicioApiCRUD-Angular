@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Juguete } from '../common/juguete';
+import { Juguete, Juguetes } from '../common/juguete';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,19 @@ export class JugueteServiceService {
 
   constructor() { }
 
-  getJuguetes():Observable<Juguete[]>{
-    return this.http.get<Juguete[]>(this.baseURL + "alljuguetes")
+  getJuguetes():Observable<Juguetes>{
+    return this.http.get<Juguetes>(this.baseURL + "alljuguetes")
   }
+
+  getJuguete(id: number):Observable<Juguete>{
+    return this.http.get<Juguete>(this.baseURL + "juguete/" + id)
+  }
+
+  
+
+}
+
+export interface ApiResponseStatus{
+  status: string;
+
 }

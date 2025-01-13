@@ -17,6 +17,10 @@ export const routes: Routes = [
         component: JugueteModelComponent
     },
     {
+        path: 'juguetes/edit/:id',
+        component: JugueteModelComponent
+    },
+    {
         path: '**',
         redirectTo: 'juguetes/list',
         pathMatch: 'full'

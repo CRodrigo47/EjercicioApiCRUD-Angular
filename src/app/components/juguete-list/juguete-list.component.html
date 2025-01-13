@@ -1,0 +1,42 @@
+@defer (when this.juguetes[0]!=null) {
+<div class="row text-center">
+  <div class="col-12">
+    <h1 class="py-3 border-bottom">API DE JUGUETES</h1>
+  </div>
+  @for (juguete of this.juguetes; track juguete._id) {
+  <div class="col-md-6 col-l-4 col-xl-3 d-flex justify-content-center">
+    <div class="card my-3" style="width: 18rem">
+      <div class="card-title bg-primary text-white" style="min-height: 4rem;">
+        <h4 class="text-center">{{ juguete.nombre }}</h4>
+      </div>
+      <div class="card-image d-flex justify-content-center" style="height: 80%">
+        <img
+          src="{{ juguete.imagen }}"
+          alt="{{ juguete.nombre }}"
+          class="img-fluid object-fit-contain"
+          style="max-height: 100%; max-width: 100%"
+        />
+      </div>
+      <div class="card-body align-items-bottom border-top">
+        <div class="card-body">
+          <p>Categoria - {{ juguete.categoria }}</p>
+          <div class="rows d-flex justify-content-between">
+            <p>PEGI: {{ juguete.edadMinima }} años</p>
+            <p>{{ juguete.precio }}€</p>
+          </div>
+        </div>
+        <div class="card-footer text-secondary">
+          <p class="fw-light">ID: {{ juguete._id }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+}@placeholder {
+<div class="d-flex justify-content-center">
+  <div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}

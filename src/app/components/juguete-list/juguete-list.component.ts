@@ -20,5 +20,19 @@ export class JugueteListComponent {
     this.loadJuguetes();
   }
 
-  loadJuguetes() {}
+  loadJuguetes() {
+    this.jugueteService.getJuguetes().subscribe(
+      {next: value => {
+        this.juguetes = value.juguetes
+        return this.juguetes
+      },
+    error: err => {
+      return console.error(err)
+    },
+    complete: () =>{
+      return console.log("Juguetes cargados con exito")
+    }}
+      
+    )
+  }
 }
