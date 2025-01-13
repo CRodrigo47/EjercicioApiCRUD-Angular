@@ -16,7 +16,7 @@ export class JugueteServiceService {
     return this.http.get<Juguetes>(this.baseURL + "alljuguetes")
   }
 
-  getJuguete(id: number):Observable<Juguete>{
+  getJuguete(id: string):Observable<Juguete>{
     return this.http.get<Juguete>(this.baseURL + "juguete/" + id)
   }
 
@@ -25,7 +25,7 @@ export class JugueteServiceService {
   }
 
   updateJuguete(juguete: Juguete): Observable<ApiResponseStatus>{
-    return this.http.put<ApiResponseStatus>(this.baseURL + "update/" + juguete._id, juguete)
+    return this.http.patch<ApiResponseStatus>(this.baseURL + "update/" + juguete._id, juguete)
   }
 
   deleteJuguete(id: string): Observable<ApiResponseStatus>{

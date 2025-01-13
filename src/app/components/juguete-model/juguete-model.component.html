@@ -1,1 +1,84 @@
-<p>juguete-model works!</p>
+@defer (when this.cargandoFormulario) {
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        {{ id ? nombre.value : "Nuevo Juguete" }}
+      </h5>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formJuguete" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+          <input
+            formControlName="nombre"
+            type="text"
+            class="form-control"
+            id="nombre"
+            placeholder="Nombre del juguete"
+          />
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="imagen"
+            id="imagen"
+            placeholder="URL de la imagen"
+          />
+          <label for="imagen">Imagen</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="categoria"
+            id="categoria"
+            placeholder="Categoria del juguete"
+          />
+          <label for="categoria">Categoria</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="edadMinima"
+            id="edadMinima"
+            placeholder="0"
+          />
+          <label for="edadMinima">Edad minima</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="precio"
+            id="precio"
+            placeholder="0"
+          />
+          <label for="precio">Precio</label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="activeModal.dismiss()"
+      >
+        Cerrar
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        Guardar cambios
+      </button>
+    </div>
+  </div>
+</div>
+
+}@placeholder {
+<div class="d-flex justify-content-center">
+  <div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
