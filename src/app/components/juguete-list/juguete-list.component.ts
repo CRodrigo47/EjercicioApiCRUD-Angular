@@ -21,19 +21,35 @@ export class JugueteListComponent {
     this.loadJuguetes();
   }
 
+  protected deleteJuguete(juguete: Juguete) {
+    if (
+      confirm(
+        '¿Seguro que quieres eliminar este juguete: ' + juguete.nombre + ' ?'
+      )
+    ) {
+      this.jugueteService.deleteJuguete(juguete._id).subscribe({
+        next: (value) => {
+          console.log(value);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+    }
+  }
+
   loadJuguetes() {
-    this.jugueteService.getJuguetes().subscribe(
-      {next: value => {
-        this.juguetes = value.juguetes
-        return this.juguetes
+    this.jugueteService.getJuguetes().subscribe({
+      next: (value) => {
+        this.juguetes = value.juguetes;
+        return this.juguetes;
       },
-    error: err => {
-      return console.error(err)
-    },
-    complete: () =>{
-      return console.log("Juguetes cargados con exito")
-    }}
-      
-    )
+      error: (err) => {
+        return console.error(err);
+      },
+      complete: () => {
+        return console.log('Juguetes cargados con exito');
+      },
+    });
   }
 }
