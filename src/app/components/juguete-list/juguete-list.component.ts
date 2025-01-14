@@ -30,9 +30,11 @@ export class JugueteListComponent {
       this.jugueteService.deleteJuguete(juguete._id).subscribe({
         next: (value) => {
           console.log(value);
+          this.loadJuguetes();
         },
         error: (err) => {
           console.error(err);
+          alert('Error al eliminar el juguete');
         },
       });
     }
