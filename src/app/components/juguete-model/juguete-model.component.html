@@ -17,6 +17,14 @@
             placeholder="Nombre del juguete"
           />
           <label for="nombre">Nombre</label>
+          @if (nombre.invalid && (nombre.touched || nombre.diry)) {
+          <div class="alert alert-damger">
+            @if (nombre.errors["required"]) { Nombre es obligatorio }
+          </div>
+          @if (nombre.errors["minlength"]) { Debe de tener una longitud minima
+          de 2 caracteres } @if (nombre.errors["notOnlyWhiteSpace"]) { No se
+          puede rellenar el campo con un espacio en blanco } @if
+          (nombre.errors["forbiddenName"]) { Nombre no puede contener xxx } }
         </div>
         <div class="form-floating mb-3">
           <input
@@ -27,6 +35,8 @@
             placeholder="URL de la imagen"
           />
           <label for="imagen">Imagen</label>
+          @if (nombre.errors["notOnlyWhiteSpace"]) { No se puede rellenar el
+          campo con un espacio en blanco }
         </div>
         <div class="form-floating mb-3">
           <input
@@ -37,6 +47,14 @@
             placeholder="Categoria del juguete"
           />
           <label for="categoria">Categoria</label>
+          @if (categoria.invalid && (categoria.touched || categoria.diry)) {
+          <div class="alert alert-damger">
+            @if (categoria.errors["required"]) { La categoria es obligatoria }
+          </div>
+          @if (categoria.errors["minlength"]) { Debe de tener una longitud
+          minima de 2 caracteres } @if (nombre.errors["notOnlyWhiteSpace"]) { No
+          se puede rellenar el campo con un espacio en blanco } @if
+          (nombre.errors["forbiddenName"]) { Categoria no puede contener xxx } }
         </div>
         <div class="form-floating mb-3">
           <input
@@ -47,6 +65,10 @@
             placeholder="0"
           />
           <label for="edadMinima">Edad minima</label>
+          @if (edadMinima.invalid && (edadMinima.touched || edadMinima.dirty)){
+          @if (edadMinima.errors["required"]) { La edad minima es obligatoria }
+          @if (edadMinima.errors["min"]) { La edad minima es 0 años } @if
+          (edadMinima.errors["max"]) { La edad maxima es 18 años } }
         </div>
         <div class="form-floating mb-3">
           <input
@@ -57,21 +79,28 @@
             placeholder="0"
           />
           <label for="precio">Precio</label>
+          @if (precio.invalid && (precio.touched || precio.dirty)){ @if
+          (precio.errors["required"]) { El precio minimo es obligatorio } @if
+          (precio.errors["min"]) { El precio minimo es 0 euros } }
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-danger" (click)="onSubmit()">
         Guardar cambios
+        <!-- [disabled]="formJuguete.invalid" -->
       </button>
     </div>
   </div>
 </div>
 
 }@placeholder {
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
-    <div class="spinner-border text-danger" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 300px"
+>
+  <div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
+</div>
 }

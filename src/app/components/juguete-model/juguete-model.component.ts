@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormValidator } from '../../validators/FormValidators';
 
 @Component({
   selector: 'app-juguete-model',
@@ -22,7 +23,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class JugueteModelComponent implements OnInit {
   @Input('id') id!: string;
-  cargandoFormulario = false
+  cargandoFormulario = false;
 
   private readonly router = inject(Router);
   activeModal = inject(NgbActiveModal);
@@ -33,11 +34,14 @@ export class JugueteModelComponent implements OnInit {
 
   formJuguete: FormGroup = this.formBuilder.group({
     _id: [''],
-    nombre: [''],
-    imagen: [''],
-    categoria: [''],
-    edadMinima: [],
-    precio: [],
+    nombre: ['', [Validators.required, Validators.minLength(2), FormValidator.notOnlyWhiteSpace, FormValidator.forbiddenNameValidator(/xxx || sex || pilililla/i)]],
+    imagen: ['', [Validators.required, Validators.minLength(2), FormValidator.notOnlyWhiteSpace]],
+    categoria: ['', [Validators.required, Validators.minLength(2), FormValidator.notOnlyWhiteSpace, FormValidator.forbiddenNameValidator(/xxx/i)]],
+    edadMinima: [
+      0,
+      [Validators.required, Validators.min(0), Validators.max(18)],
+    ],
+    precio: [0, [Validators.required, Validators.min(0)]],
   });
 
   get nombre(): any {
@@ -57,6 +61,10 @@ export class JugueteModelComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.formJuguete.invalid) {
+      this.formJuguete.markAllAsTouched();
+      return;
+    }
     if (this.id) {
       this.jugueteService
         .updateJuguete(this.formJuguete.getRawValue())
@@ -86,18 +94,17 @@ export class JugueteModelComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.id){
+    if (this.id) {
       this.jugueteService.getJuguete(this.id).subscribe({
         next: (value) => {
           this.formJuguete.setValue(value);
-          this.cargandoFormulario = true
+          this.cargandoFormulario = true;
         },
         error: (err) => console.error(err),
       });
-    }
-    else{
+    } else {
       this.formJuguete.reset();
-      this.cargandoFormulario=true
-    } 
+      this.cargandoFormulario = true;
+    }
   }
 }

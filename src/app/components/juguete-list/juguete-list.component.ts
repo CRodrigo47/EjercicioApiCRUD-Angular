@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Juguete } from '../../common/juguete';
 import { JugueteServiceService } from '../../services/juguete-service.service';
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-juguete-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './juguete-list.component.html',
   styleUrl: './juguete-list.component.css',
 })

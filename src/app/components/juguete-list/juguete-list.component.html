@@ -34,7 +34,7 @@
           <p>Categoria - {{ juguete.categoria }}</p>
           <div class="rows d-flex justify-content-between">
             <p>PEGI: {{ juguete.edadMinima }} años</p>
-            <p>{{ juguete.precio }}€</p>
+            <p>{{ juguete.precio | currency: "EUR" }}</p>
           </div>
         </div>
         <div class="card-footer text-secondary">
